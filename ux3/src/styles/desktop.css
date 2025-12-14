@@ -1,0 +1,623 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* фон вокруг макета */
+.app-bg {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* "окно браузера" */
+.browser {
+    background: transparent;   /* фон задаём дальше в .browser-main и футере */
+    width: 100%;
+    min-height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+}
+
+/* верхняя фиолетовая панель */
+.browser-header {
+    background: #8c4fd6;    /* фиолетовая полоса */
+    padding: 0.7rem 1.5rem; /* внутренние отступы */
+    color: white;
+    font-size: 0.95rem;
+}
+
+.browser-title {
+    font-weight: 600;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+}
+
+
+.browser-url {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-weight: 500;
+}
+
+.browser-url::before {
+    content: "🔒 ";
+}
+
+.browser-icons-right {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.9);
+}
+
+
+/* зелёная зона контента */
+.browser-main {
+    flex: 1;                /* растягивает центральную часть */
+    padding: 2rem 3rem;
+}
+
+
+/* общий контейнер страницы */
+.page {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ====== EMAIL PAGE LAYOUT ====== */
+
+/* две колонки: слева меню, справа письмо */
+.email-page {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin-top: 1rem;
+    margin-left: 0; /* на будущее, но важнее другое */
+}
+
+/* левый сайдбар */
+.mail-sidebar {
+    background: #d6d6d6;
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.sidebar-header {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-header span {
+    font-weight: 400;
+    color: #888;
+}
+
+.mail-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.mail-nav-item {
+    border: none;
+    background: transparent;
+    text-align: left;
+    padding: 0.4rem 0.3rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.mail-nav-item:hover {
+    background: #f1f1f1;
+}
+
+.mail-nav-item.active {
+    background: #e0e0e0;
+}
+
+.nav-desc {
+    display: block;
+    font-size: 0.75rem;
+    color: #888;
+}
+
+/* правая часть */
+.mail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* полоска поиска */
+.mail-search-bar {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.search-field {
+    width: 60%;
+    height: 32px;
+    border-radius: 999px;
+    border: 2px solid #ccc;
+    padding: 0 40px 0 14px;
+    font-size: 14px;
+    outline: none;
+    transition: .2s;
+}
+
+.search-icon {
+    margin-left: -30px;
+    font-size: 18px;
+    pointer-events: none;
+}
+
+.search-input {
+    width: 70%;
+    height: 26px;
+    border-radius: 999px;
+    border: 2px solid #ccc;
+}
+
+/* карточка письма */
+.mail-card {
+    background: #989898;                       /* белая карточка как письмо */
+    border-radius: 8px;                        /* поменьше скругление */
+    padding: 1rem 1.5rem 0.8rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);    /* лёгкая тень, не такая сильная */
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+/* верхние иконки письма */
+.mail-card-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* блок с аватаркой и темой */
+.mail-meta {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.8rem;
+    align-items: center;
+    background: #f3f3f3;
+    padding: 0.7rem;
+    border-radius: 12px;
+}
+
+.mail-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.mail-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mail-meta-text {
+    font-size: 0.85rem;
+}
+
+.mail-subject {
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.mail-from {
+    color: #555;
+}
+
+.mail-time {
+    font-size: 0.75rem;
+    text-align: right;
+    color: #777;
+}
+
+/* тело письма */
+.mail-body {
+    background: #f5f5f5;  /* вместо тёмно-серого блока */
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+}
+
+.mail-body p {
+    margin: 0 0 0.8rem 0;
+}
+
+.mail-link {
+    font-weight: 600;
+}
+
+.mail-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.5rem;
+    border-top: 1px solid #6c6868;
+    font-size: 0.85rem;
+}
+
+.link-ghost {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #555;
+}
+
+.pages {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.site-footer {
+    background: #8c4fd6;
+    color: white;
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;                 /* все три колонки занимают по трети футера */
+}
+
+/* средняя колонка — текст по центру */
+.footer-column:nth-child(2) {
+    text-align: center;
+}
+
+/* правая колонка — текст вправо */
+.footer-column:nth-child(3) {
+    text-align: right;
+}
+
+.footer-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.footer-link {
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: rgba(255,255,255,0.9);
+}
+
+/* INSTAGRAM WEB START*/
+.insta-login-page{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* раздвигаем левый и правый блоки */
+    padding: 2.5rem 14rem;          /* больше отступы слева/справа */
+    gap: 2rem;                     /* доп. расстояние между ними */
+    background: #c6ffd0;
+    position: relative;
+}
+
+
+.insta-card{
+    background: #fff;
+    padding: 1.8rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    width: 360px;          /* можно 340px, если хочешь ещё уже */
+    text-align: left;
+}
+
+
+.insta-button {
+    margin-top: 0.8rem;
+    width: 100%;              /* на всю ширину карточки */
+    padding: 0.6rem 0.75rem;
+    border-radius: 999px;
+    border: none;
+    background: #262626;      /* как на скрине — почти чёрная */
+    color: white;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.insta-image {
+    margin-left: 80px;
+    position: relative;      /* чтобы внутрь можно было ставить absolute */
+    width: 360px;            /* ширина «группы» картинок */
+    height: 260px;           /* высота блока под них */
+}
+
+/* общие стили для всех трёх картинок */
+.insta-photo {
+    position: absolute;
+    width: 240px;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 24px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+}
+
+.insta-photo-left  { left: -40px; top: -100px; }
+.insta-photo-center{ width: 240px; height: 500px; left: 50%; transform: translateX(-50%); top: -130px; z-index: 3;}
+.insta-photo-right { right: -40px; top: -100px; }
+
+
+
+.insta-logo {
+    text-align: center;                               /* текст по центру */
+    font-family: "Brush Script MT", "Lucida Handwriting", cursive;
+    font-size: 2.4rem;                                /* крупная надпись */
+    margin: 0 0 1.5rem 0;                             /* отступ снизу */
+}
+
+.insta-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 0.95rem;
+    margin-bottom: 0.7rem;
+    outline: none;
+}
+
+.phish-warning {
+    position: absolute;      /* кладём поверх страницы */
+    left: 50%;               /* сдвиг по горизонтали (играйся числом) */
+    top: 50%;                /* сдвиг по вертикали */
+    transform: translate(-50%, -50%);
+    width: 450px;
+    background: #ffeebe;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    padding: 1.5rem 2rem 1.2rem;
+    font-size: 1rem;
+    z-index: 10;             /* поверх картинок и формы */
+}
+
+.phish-title {
+    text-align: center;
+    color: #ff3b30;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+.phish-badge {
+    display: block;          /* 👈 делает элемент блочным */
+    margin: 0 auto 1rem;     /* теперь auto действительно центрирует */
+    padding: 0.3rem 1.2rem;
+    border-radius: 999px;
+    background: #ffcc66;
+    border: 2px solid #ff8c42;
+    font-size: 1rem;         /* можно чуть увеличить */
+    font-weight: 600;
+    text-align: center;      /* на всякий случай для внутреннего текста */
+}
+
+
+.phish-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+.btn-safe,
+.btn-cancel {
+    background: #ff4d4f;
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.6rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn-safe {
+    background: #00a84f;
+}
+
+.btn-cancel {
+    background: #ff3b30;
+}
+
+/* ====== BLOCKED PAGE (403) ====== */
+.blocked-bg {
+    margin: 0;
+    min-height: 100vh;
+    background: #ffffff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.blocked-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin: 1.5rem 0 1rem 0.8rem; /* отступы как в макете слева сверху */
+}
+
+/* центрируем голубую карточку */
+.blocked-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+}
+
+/* сама карточка PhishGuard */
+.blocked-card {
+    width: 700px;
+    background: #e9f7ff;       /* светло-голубой */
+    border-radius: 18px;
+    padding: 2rem 3rem 2.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* бейдж "PhishGuard" */
+.blocked-badge {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1677ff;
+    margin-bottom: 0.8rem;
+}
+
+/* тонкая линия */
+.blocked-line {
+    border: none;
+    border-top: 1px solid #444;
+    margin: 0 0 3rem 0;
+}
+
+/* зелёный текст внутри */
+.blocked-text {
+    font-size: 1.8rem;
+    color: #1a7f2b;
+    margin-bottom: 3rem;
+}
+
+/* кнопка "Zavrieť" */
+.blocked-close-btn {
+    background: #1fb455;
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.8rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* REPORT */
+.report-modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    background: #e9f7ff;
+    border-radius: 20px;
+    padding: 2.2rem 2.8rem 2rem;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+    z-index: 15;           /* выше всего остального */
+    text-align: center;
+}
+
+.report-header {
+    margin-bottom: 1rem;
+}
+
+.report-logo {
+    display: block;
+    font-size: 1.1rem;
+    color: #1a74d8;
+    font-weight: 600;
+}
+
+.report-title {
+    margin: 0.3rem 0 0;
+    font-size: 1.4rem;
+    color: #1a74d8;
+    font-weight: 600;
+}
+
+.report-line {
+    border: none;
+    border-top: 1px solid #555;
+    margin: 0 0 1.5rem 0;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.8rem;
+    font-size: 0.95rem;
+}
+
+.report-table th,
+.report-table td {
+    border: 1px solid #555;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+}
+
+.report-table th {
+    background: #f5f5f5;
+    font-weight: 600;
+}
+
+/* скруглить углы внутренней таблицы как на прототипе можно потом отдельными селекторами */
+
+/* кружки статуса */
+.status-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 0.4rem;
+}
+
+/* цвета */
+.status-dot.red {
+    background: #e53935;
+}
+.status-dot.orange {
+    background: #ff9800;
+}
+.status-dot.yellow {
+    background: #ffeb3b;
+}
+.status-dot.green {
+    background: #4caf50;
+}
+
+.report-remove-btn {
+    padding: 0.7rem 1.8rem;
+    border-radius: 10px;
+    border: none;
+    background: #16a34a;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+}

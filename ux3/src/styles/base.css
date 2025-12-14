@@ -1,0 +1,23 @@
+:root{
+    --bg: #dff0f2;
+    --screen: #f3ead7;
+    --text: #1b1b1b;
+    --muted: #6d6d6d;
+    --shadow: 0 6px 18px rgba(0,0,0,.12);
+
+    --chip: #a8c2ff;
+
+    --danger: #ff3b30;
+    --soft: #e8e8e8;
+}
+
+*{ box-sizing: border-box; }
+html,body{ height:100%; }
+body{
+    margin:0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+button{ cursor:pointer; }
+button:disabled{ cursor:not-allowed; }

@@ -1,0 +1,22 @@
+:root {
+          --color--primary-white: #FFF;
+          --color--primary-black: #1E1E1E;
+          --color--secondary-blue-light: #A3E9F6;
+          --color--grayscale-gray100: #F5F5F5;
+
+          --text-color: var(--color--primary-black);
+          --text-color-secondary: #757575;
+          --title-hero: 4.5rem;
+          --subtitle: 2rem;
+          --heading: 1.5rem;
+      }
+
+body {
+    font-family: "Roboto Condensed", serif; font-optical-sizing: auto;
+    color: var(--text-color); line-height: 100%;
+}
+
+h1, h2, h3, h4, h5 { line-height: 120%; }
+
+h1 { font-size: var(--title-hero); }
+h2 { font-size: var(--subtitle); color: var(--text-color-secondary); }
